@@ -1,3 +1,4 @@
+/* Reset & Base Styles */
 body {
     font-family: helvetica, sans-serif;
     margin: 0;
@@ -14,23 +15,28 @@ header {
     padding: 10px 30px;
     background: #ececec;
     color: rgb(0, 0, 0);
-    margin-bottom: 10px; /* Mengurangi margin bottom navbar */
+    margin-bottom: 10px;
 }
 
-nav ul {
+header nav ul {
     list-style: none;
     display: flex;
     padding: 0;
     margin: 0;
 }
 
-nav ul li {
+header nav ul li {
     margin-right: 20px;
 }
 
-nav ul li a {
+header nav ul li a {
     text-decoration: none;
     color: rgb(0, 0, 0);
+}
+
+header nav ul li a:hover {
+    color: #ff0000;
+    text-decoration: underline;
 }
 
 /* Main Content */
@@ -40,31 +46,36 @@ main {
     margin: 0 auto;
 }
 
-.filter {
+main > div:first-child {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-button {
+main > div:first-child > button {
     padding: 10px;
     background: black;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 3px; /* Border radius kecil */
+    border-radius: 3px;
 }
 
-/* Product Grid */
-.products {
+main > div:first-child > button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+/* Products Grid */
+section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     justify-content: center;
 }
 
-/* Product Box */
-.product {
+section > div {
     background: white;
     padding: 20px;
     text-align: center;
@@ -73,27 +84,45 @@ button {
     flex-direction: column;
     align-items: center;
     min-height: 350px;
-    border-radius: 3px; /* Semua produk memiliki sudut sedikit membulat */
+    border-radius: 3px;
 }
 
+section > div:first-child {
+    border: 2px solid #00aaff;
+}
 
+section > div:last-child {
+    border: 2px dashed #ffaa00;
+}
 
-/* Product Image */
-.product-img {
-    width: 100%; /* Gambar fit ke kanan dan kiri */
+section > div:nth-child(even) {
+    background-color: #fafafa;
+}
+
+section > div:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+section > div:hover > div {
+    background-color: #aaa;
+    transition: 0.3s ease;
+}
+
+section > div > div {
+    width: 100%;
     height: 180px;
     background: #ccc;
-    border-radius: 3px; /* Gambar juga sedikit membulat */
+    border-radius: 3px;
     margin-bottom: 15px;
 }
 
-.product p {
+section > div > p {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.product span {
+section > div > span {
     font-size: 14px;
     color: #555;
 }
@@ -105,8 +134,7 @@ footer {
     text-align: center;
 }
 
-/* Bagian atas footer: 3 kolom */
-.footer-top {
+footer > div:first-child {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -114,29 +142,28 @@ footer {
     margin-bottom: 40px;
 }
 
-.footer-item {
+footer > div:first-child > div {
     max-width: 300px;
     text-align: center;
 }
 
-.footer-item img {
+footer > div:first-child > div > img {
     width: 50px;
     margin-bottom: 10px;
 }
 
-.footer-item h3 {
+footer > div:first-child > div > h3 {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.footer-item p {
+footer > div:first-child > div > p {
     font-size: 14px;
     color: #555;
 }
 
-/* Bagian tengah footer: Quick Links + Subscribe & Schedule */
-.footer-middle {
+footer > div:nth-child(2) {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -147,65 +174,43 @@ footer {
     text-align: left;
 }
 
-.footer-left {
+footer > div:nth-child(2) > div:first-child {
     width: 40%;
 }
 
-/* Form Subscribe di bawah Quick Links */
-.footer-subscribe {
+footer > div:nth-child(2) > div:first-child ul {
+    padding-left: 20px;
+}
+
+footer > div:nth-child(2) > div:first-child div {
     margin-top: 20px;
 }
 
-/* Input dan Button dalam 1 bungkusan */
-.subscribe-box {
-    display: flex;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.subscribe-box input {
+footer input[type="email"] {
     flex: 1;
     padding: 10px;
     border: none;
     outline: none;
 }
 
-.subscribe-box button {
-    padding: 10px 15px;
-    background: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    border: none;
-    cursor: pointer;
-}
-.subscribe-box input:hover {
-    border: 2px solid;
+footer input[type="email"]:hover,
+footer input[type="email"]:focus {
+    border: 2px solid #00cc66;
+    box-shadow: 0 0 5px rgba(0, 204, 102, 0.5);
 }
 
-/* Schedule di sebelah kanan */
-.footer-right {
+footer > div:nth-child(2) > div:last-child {
     width: 40%;
 }
 
-/* Ikon Sosial Media */
-.footer-social {
-    margin-top: 20px;
-}
-
-.footer-social a {
+footer > div:last-child a {
     margin: 0 10px;
     font-size: 18px;
     color: black;
     text-decoration: none;
 }
 
-
-button {
-    padding: 5px;
-    background: white;
-    color: black;
-    border: none;
-    cursor: pointer;
-    border-radius: 3px;
+footer > div:last-child a:hover {
+    color: #555;
+    text-decoration: underline;
 }
