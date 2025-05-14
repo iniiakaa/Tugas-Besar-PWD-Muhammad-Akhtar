@@ -25,7 +25,27 @@ header {
   -moz-transition: top 0.3s ease;
   -ms-transition: top 0.3s ease;
   -o-transition: top 0.3s ease;
+  
 }
+header > div:last-of-type {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 40px;
+  max-width: 180px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+header > div:last-of-type span:first-child a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  padding: 5px 10px; /* Memberikan jarak antara teks dan border */
+  border-radius: 25px; /* Membuat sudut melengkung */
+  transition: all 0.3s ease; /* Transisi halus saat hover */
+}
+
 
 header nav ul {
   list-style: none;
@@ -158,7 +178,7 @@ section > div > span {
   text-align: left;
   width: 100%;
   display: block;
-  padding: 0 12px; /* tambahkan padding kiri & kanan */
+  padding: 0 12px; 
   margin-top: auto;
 }
 
@@ -278,3 +298,4 @@ footer > div:last-of-type a {
   color: #1a1a1a;
   text-decoration: none;
 }
+
