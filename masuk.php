@@ -1,5 +1,5 @@
 <?php
-session_start(); // Tambahkan di awal file untuk error pop-up
+session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="id">

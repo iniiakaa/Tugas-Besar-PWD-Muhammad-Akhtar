@@ -1,5 +1,5 @@
 <?php
-session_start(); // Tambahkan di awal file
+session_start(); 
 ?>
 
 <!DOCTYPE html>
