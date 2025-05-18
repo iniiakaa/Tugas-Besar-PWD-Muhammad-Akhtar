@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Dashboard</title>
-    <link rel="stylesheet" href="css/dashboard.css">
-</head>
-<body>
-  <main>
-    <h1>Dashboard </h1>
-    <nav>
-      <a href="#">📦 Manajemen Barang</a>
-      <a href="#">👤 Manajemen Pengguna</a>
-      <a href="#">🛒 Transaksi</a>
-      <a href="#">📊 Laporan</a>
-      <a href="#">⚙️ Pengaturan Sistem</a>
-      <a href="#">🔐 Keamanan</a>
-      <a href="#">🚪 Keluar</a>
-    </nav>
-  </main>
-</body>
-</html>
+<link rel="stylesheet" href="css/dashboard.css">
+<?php
+
+session_start();
+
+include 'koneksi.php';
+include 'includes/header.php';
+
+
+echo '<main>';
+
+$modul = isset($_GET['modul']) ? $_GET['modul'] : 'home';
+$file = "modules/$modul.php";
+
+if (file_exists($file)) {
+    include $file;
+} else {
+    echo "<h2>Modul tidak ditemukan</h2>";
+}
+
+echo '</main>';
+
+include 'includes/footer.php';
+?>

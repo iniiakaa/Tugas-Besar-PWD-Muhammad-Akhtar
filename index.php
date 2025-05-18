@@ -1,3 +1,10 @@
+<?php
+include 'koneksi.php';
+
+// Ambil data produk dari tabel barang
+$result = $conn->query("SELECT * FROM barang ORDER BY id DESC");
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -23,15 +30,12 @@
         </nav>
         <div>
             <span>
-  <a href="masuk.php" aria-label="Login">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-  </svg>
-    </a>
-
-</span>
-
-            
+                <a href="masuk.php" aria-label="Login">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </a>
+            </span>
         </div>
     </header>
 
@@ -43,31 +47,23 @@
         </div>
 
         <section>
-            <!-- Produk-produk -->
-            <div>
-                <div><img src="element/item-1.jpg" alt="Noir Timeless V2 Special Edition" /></div>
-                <p>Noir Timeless V2 Special Edition</p>
-                <p>Rp 1.349.000,00</p>
-            </div>
-            <div>
-                <div><img src="element/item-1.jpg" alt="Noir Timeless HE" /></div>
-                <p>Noir Timeless HE - 75% Mechanical Keyboard</p>
-                <p>Rp 1.399.000,00</p>
-            </div>
-            <div>
-                <div><img src="element/item-1.jpg" alt="Noir MG" /></div>
-                <p>Noir MG - Megalith Wireless Gaming Mouse</p>
-                <p>Rp 1.599.000,00</p>
-            </div>
-            <div>
-                <div><img src="element/item-1.jpg" alt="Noir M1 Pro" /></div>
-                <p>Noir M1 Pro - Wireless Gaming Mouse</p>
-                <p>Rp 849.000,00</p>
-            </div>
-            <!-- Tambahkan produk lainnya sesuai kebutuhan -->
+            <!-- Produk-produk dinamis dari database -->
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div>
+                    <div>
+                        <?php if (!empty($row['foto']) && file_exists('uploads/' . $row['foto'])): ?>
+                            <img src="uploads/<?= htmlspecialchars($row['foto']) ?>" alt="<?= htmlspecialchars($row['nama']) ?>" />
+                        <?php else: ?>
+                            <img src="element/item-1.jpg" alt="No Image" />
+                        <?php endif; ?>
+                    </div>
+                    <p><?= htmlspecialchars($row['nama']) ?></p>
+                    <p>Rp <?= number_format($row['harga'], 0, ',', '.') ?>,00</p>
+                </div>
+            <?php endwhile; ?>
         </section>
     </main>
-
+    
     <!-- Footer -->
     <footer>
         <div>
