@@ -1,0 +1,15 @@
+main {
+  padding-top: 30px;
+  background-color: black;
+}
+
+main > section {
+  width: 100%;
+  overflow: hidden;
+}
+
+main > section > img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

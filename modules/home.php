@@ -6,7 +6,7 @@
 <nav>
   <a href="dashboard.php?modul=barang">📦 Barang</a>
   <a href="dashboard.php?modul=pengguna">👤 Pengguna</a>
-  <a href="dashboard.php?modul=laporan">📊 Laporan</a>
+  <a href="dashboard.php?modul=banner">📊 Banner</a>
   <a href="logout.php">🚪 Keluar</a>
 </nav>
 

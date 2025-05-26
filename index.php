@@ -1,111 +1,29 @@
-<?php
-include 'koneksi.php';
 
-// Ambil data produk dari tabel barang
-$result = $conn->query("SELECT * FROM barang ORDER BY id DESC");
+
+<?php
+session_start();
+
+include 'koneksi.php';
+include 'include/header.php';
+
+echo '<main>';
+
+$modul = isset($_GET['modul']) ? $_GET['modul'] : 'allproduct';
+$file = "module/$modul.php";
+
+if ($modul === 'allroduct') {
+    include 'module/allproduct.php';
+
+}
+
+if (file_exists($file)) {
+    include $file;
+} else {
+    echo "<h2>Modul tidak ditemukan</h2>";
+}
+
+echo '</main>';
+
+include 'include/footer.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Monster Store</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-    <!-- Header -->
-    <header>
-        <div>MONSTER</div>
-        <nav>
-            <ul>
-                <li><a href="#">Sale</a></li>
-                <li><a href="#">Audio</a></li>
-                <li><a href="#">Gaming</a></li>
-                <li><a href="#">Vision</a></li>
-                <li><a href="#">Lighting</a></li>
-                <li><a href="#">Shop All</a></li>
-            </ul>
-        </nav>
-        <div>
-            <span>
-                <a href="masuk.php" aria-label="Login">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
-                </a>
-            </span>
-        </div>
-    </header>
-
-    <!-- Main -->
-    <main>
-        <div>
-            <span>Filter</span>
-            <span>Urutkan berdasarkan: <strong>Terbaru</strong></span>
-        </div>
-
-        <section>
-            <!-- Produk-produk dinamis dari database -->
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div>
-                    <div>
-                        <?php if (!empty($row['foto']) && file_exists('uploads/' . $row['foto'])): ?>
-                            <img src="uploads/<?= htmlspecialchars($row['foto']) ?>" alt="<?= htmlspecialchars($row['nama']) ?>" />
-                        <?php else: ?>
-                            <img src="element/item-1.jpg" alt="No Image" />
-                        <?php endif; ?>
-                    </div>
-                    <p><?= htmlspecialchars($row['nama']) ?></p>
-                    <p>Rp <?= number_format($row['harga'], 0, ',', '.') ?>,00</p>
-                </div>
-            <?php endwhile; ?>
-        </section>
-    </main>
-    
-    <!-- Footer -->
-    <footer>
-        <div>
-            <div>
-                <h3>Quick links</h3>
-                <ul>
-                    <li><a href="#">Search</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Register Your Product</a></li>
-                    <li><a href="#">Join our Discord!</a></li>
-                </ul>
-
-                <h3>Subscribe to our emails</h3>
-                <form>
-                    <input type="email" placeholder="Email" />
-                    <button type="submit">→</button>
-                </form>
-            </div>
-
-            <div>
-                <h3>Schedule</h3>
-                <p>
-                    <strong>Shipping:</strong><br />
-                    Mon - Sat: Orders made before 12 noon (WIB) will be shipped at that day<br />
-                    Sun - Holidays: Closed (no shipping)
-                </p>
-                <p>
-                    <strong>Customer Services:</strong><br />
-                    Mon - Fri: 9AM - 4PM WIB<br />
-                    Sat: 9AM - 1PM WIB<br />
-                    Slow response on holidays and non-working hours.
-                </p>
-            </div>
-        </div>
-
-        <div>
-            <a href="#"><img src="element/icon-instagram.svg" alt="Instagram" /></a>
-            <a href="#"><img src="element/icon-youtube.svg" alt="YouTube" /></a>
-            <a href="#"><img src="element/icon-tiktok.svg" alt="TikTok" /></a>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>

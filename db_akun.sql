@@ -1,18 +1,35 @@
-create database IF NOT EXISTS `db_akun`;
-use `db_akun`;
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) UNIQUE NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) 
+CREATE DATABASE IF NOT EXISTS db_akun;
+USE db_akun;
+
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  role VARCHAR(20) NOT NULL DEFAULT 'user',
+  PRIMARY KEY (id)
+);
+
+
+INSERT INTO users (username, password, role)
+VALUES 
+('admin', '$2y$10$cxZy7IvwWRP1eytvgkkUUelj2S3C09cjYom9lLV19b0RmWcGow9E.', 'admin');
+
 
 CREATE TABLE IF NOT EXISTS barang (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(50) NOT NULL,
-  `harga` decimal(10,2) NOT NULL,
-  `stok` int(11) NOT NULL,
-  'foto' varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  nama VARCHAR(50) NOT NULL,
+  harga DECIMAL(10,2) NOT NULL,
+  stok INT(11) NOT NULL,
+  foto VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+
+CREATE TABLE IF NOT EXISTS banner (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  judul VARCHAR(255) NOT NULL,
+  gambar VARCHAR(255) NOT NULL,
+  link VARCHAR(255) NOT NULL
 );
