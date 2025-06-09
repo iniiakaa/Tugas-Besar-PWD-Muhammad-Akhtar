@@ -1,5 +1,4 @@
 
-
 <?php
 session_start();
 
@@ -23,6 +22,9 @@ if (file_exists($file)) {
 }
 
 echo '</main>';
+
+
+
 
 include 'include/footer.php';
 ?>

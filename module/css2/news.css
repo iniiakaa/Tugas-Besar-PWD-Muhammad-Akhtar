@@ -1,0 +1,40 @@
+main {
+     padding-top: 30px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 40px;
+}
+
+article + article {
+  margin-top: 40px;
+}
+
+article h2 {
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+article p:first-of-type {
+  font-size: 0.9em;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+article p:last-of-type {
+  text-align: justify;
+}
+
+article img:first-of-type {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: block;
+   margin-left: auto;
+  margin-right: auto;
+}

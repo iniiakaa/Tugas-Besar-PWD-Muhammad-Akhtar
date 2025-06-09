@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 INSERT INTO users (username, password, role)
 VALUES 
-('admin', '$2y$10$cxZy7IvwWRP1eytvgkkUUelj2S3C09cjYom9lLV19b0RmWcGow9E.', 'admin');
+('admin', '$2y$10$cxZy7IvwWRP1eytvgkkUUelj2S3C09cjYom9lLV19b0RmWcGow9E.', 'admin'); "123"
 
 
 CREATE TABLE IF NOT EXISTS barang (

@@ -5,10 +5,10 @@
             <div>
                 <h3>Quick links</h3>
                 <ul>
-                    <li><a href="#">Search</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Register Your Product</a></li>
-                    <li><a href="#">Join our Discord!</a></li>
+                    <li><a href="index.php?modul=search">Search</a></li>
+                    <li><a href="https://api.whatsapp.com/send/?phone=6281380802324&text=Halo+Press+Play%2C+saya+mau+konsultasi+dong&type=phone_number&app_absent=0">Contact Us</a></li>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSejb07yrdijWcQnoE8g01jz46wgKBx0aeqffOhPXxawkVC0nw/viewform">Register Your Product</a></li>
+                    <li><a href="https://discord.gg/gzjtEwbp">Join our Discord!</a></li>
                 </ul>
 
                 <h3>Subscribe to our emails</h3>
@@ -35,9 +35,9 @@
         </div>
 
         <div>
-            <a href="#"><img src="element/icon-instagram.svg" alt="Instagram" /></a>
-            <a href="#"><img src="element/icon-youtube.svg" alt="YouTube" /></a>
-            <a href="#"><img src="element/icon-tiktok.svg" alt="TikTok" /></a>
+            <a href="https://www.instagram.com/relicbrand.id/"><img src="element/icon-instagram.svg" alt="Instagram" /></a>
+            <a href="https://youtu.be/iaMsMwrwyOA"><img src="element/icon-youtube.svg" alt="YouTube" /></a>
+            <a href="https://www.tiktok.com/@nahur.official/video/7511913999169015046?is_from_webapp=1&sender_device=pc"><img src="element/icon-tiktok.svg" alt="TikTok" /></a>
         </div>
     </footer>
 

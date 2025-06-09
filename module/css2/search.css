@@ -1,0 +1,70 @@
+
+h1 {
+  text-align: center;
+  margin-top: 12rem;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.search {
+  max-width: 420px;
+  margin: 2rem auto;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-bottom: 12rem; /* 👈 Tambahan space bawah */
+}
+
+.search__input {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 1rem; /* lebih luas kanan */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #f9f9f9;
+  color: #222;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search__input:focus {
+  background: #fff;
+  border-color: #444;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.field__label {
+  display: none;
+}
+
+.field__button {
+  position: absolute;
+  background: none;
+  border: none;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.search__button {
+  right: 0.75rem;
+}
+
+.reset__button {
+  right: 2.5rem;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: #666;
+  transition: fill 0.2s ease;
+}
+
+.icon:hover {
+  fill: #000;
+}

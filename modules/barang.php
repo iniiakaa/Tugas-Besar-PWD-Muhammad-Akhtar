@@ -9,12 +9,14 @@ $edit_nama = "";
 $edit_harga = "";
 $edit_stok = "";
 $edit_foto = "";
+$edit_kategori = "";
 
 // Tambah Barang
 if (isset($_POST['tambah'])) {
     $nama = $_POST['nama'];
     $harga = $_POST['harga'];
     $stok = $_POST['stok'];
+    $kategori = $_POST['kategori'];
 
     $foto = "";
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
@@ -23,7 +25,7 @@ if (isset($_POST['tambah'])) {
         move_uploaded_file($tmp, "uploads/" . $foto);
     }
 
-    $conn->query("INSERT INTO barang (nama, harga, stok, foto) VALUES ('$nama', '$harga', '$stok', '$foto')");
+    $conn->query("INSERT INTO barang (nama, harga, stok, foto, kategori) VALUES ('$nama', '$harga', '$stok', '$foto', '$kategori')");
     header("Location: dashboard.php?modul=barang");
     exit;
 }
@@ -48,10 +50,11 @@ if (isset($_GET['edit'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $edit_mode = true;
-        $edit_nama = $row['nama'];  // gunakan kolom 'nama'
+        $edit_nama = $row['nama']; 
         $edit_harga = $row['harga'];
         $edit_stok = $row['stok'];
         $edit_foto = $row['foto'];
+        $edit_kategori = $row['kategori'];
     }
 }
 
@@ -61,14 +64,16 @@ if (isset($_POST['update'])) {
     $nama = $_POST['nama'];
     $harga = $_POST['harga'];
     $stok = $_POST['stok'];
+    $foto = $_POST['foto'] ?? '';
+    $kategori = $_POST['kategori'];
 
     if (!empty($_FILES['foto']['name'])) {
         $foto = basename($_FILES['foto']['name']);
         $tmp = $_FILES['foto']['tmp_name'];
         move_uploaded_file($tmp, "uploads/" . $foto);
-        $conn->query("UPDATE barang SET nama = '$nama', harga = '$harga', stok = '$stok', foto = '$foto' WHERE id = $id");
+        $conn->query("UPDATE barang SET nama = '$nama', harga = '$harga', stok = '$stok', foto = '$foto', kategori = '$kategori' WHERE id = $id");
     } else {
-        $conn->query("UPDATE barang SET nama = '$nama', harga = '$harga', stok = '$stok' WHERE id = $id");
+        $conn->query("UPDATE barang SET nama = '$nama', harga = '$harga', stok = '$stok', kategori = '$kategori' WHERE id = $id");
     }
 
     header("Location: dashboard.php?modul=barang");
@@ -100,6 +105,7 @@ $barang = $conn->query("SELECT * FROM barang");
     <input type="text" name="nama" value="<?= htmlspecialchars($edit_nama) ?>" required>
     <input type="number" name="harga" value="<?= $edit_harga ?>" required>
     <input type="number" name="stok" value="<?= $edit_stok ?>" required>
+    <input type="text" name="kategori" value="<?= htmlspecialchars($edit_kategori) ?>" required>
     <input type="file" name="foto">
     <button type="submit" name="update">Update</button>
     <a href="dashboard.php?modul=barang">Batal</a>
@@ -111,6 +117,7 @@ $barang = $conn->query("SELECT * FROM barang");
     <input type="number" name="harga" placeholder="Harga" required>
     <input type="number" name="stok" placeholder="Stok" required>
     <input type="file" name="foto" required>
+    <input type="text" name="kategori" placeholder="Kategori" required>
     <button type="submit" name="tambah">Tambah</button>
 </form>
 <?php endif; ?>
