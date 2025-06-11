@@ -28,6 +28,7 @@ $result = $conn->query("SELECT * FROM barang ORDER BY id DESC");
                 <li><a href="index.php?modul=beranda">Home</a></li>
                 <li><a href="index.php?modul=allproduct">Sale</a></li>
                 <li><a href="index.php?modul=lightning">Lightning</a></li>
+                <li><a href="index.php?modul=manualbook">Support</a></li>
                 <li><a href="index.php?modul=aboutus">About Us</a></li>
                 <li><a href="index.php?modul=news">News</a></li>
             </ul>

@@ -33,3 +33,44 @@ CREATE TABLE IF NOT EXISTS banner (
   gambar VARCHAR(255) NOT NULL,
   link VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE manual_book (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul VARCHAR(255) NOT NULL,
+    deskripsi TEXT,
+    file_manual VARCHAR(255), -- nama file PDF/image manual
+    tanggal_upload DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE artikel (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  judul VARCHAR(255),
+  tanggal DATE,
+  isi TEXT,
+  gambar VARCHAR(255)
+);
+
+CREATE TABLE discord_links (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul VARCHAR(255),
+    deskripsi TEXT,
+    link_discord VARCHAR(255),
+    tanggal_upload DATETIME
+);
+
+CREATE TABLE tentang_kami (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul VARCHAR(255),
+    logo VARCHAR(255),
+    paragraf1 TEXT,
+    paragraf2 TEXT,
+    paragraf3 TEXT
+);
+
+CREATE TABLE instagram_links (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul VARCHAR(255) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    link_instagram VARCHAR(255) NOT NULL,
+    tanggal_upload DATETIME NOT NULL
+);

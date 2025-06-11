@@ -1,63 +1,36 @@
 <?php
 include 'koneksi.php';
 
-// ngambil daftar kategori unik
-$kategori_query = $conn->query("SELECT DISTINCT kategori FROM barang ORDER BY kategori ASC");
-$kategori_list = [];
-while ($row = $kategori_query->fetch_assoc()) {
-    $kategori_list[] = $row['kategori'];
-}
+// Hanya ambil produk dengan kategori 'lightning'
+$kategori = 'lightning';
+$safe_kategori = $conn->real_escape_string($kategori);
 
-// ngambil filter dari URL
-$kategori_filter = $_GET['kategori'] ?? '';
+// Ambil sort dari URL, default 'asc'
 $sort = $_GET['sort'] ?? 'asc';
+$sort = ($sort === 'desc') ? 'DESC' : 'ASC';
 
-//  query SQL
-$sql = "SELECT * FROM barang";
-$conditions = [];
-
-if (!empty($kategori_filter)) {
-    $safe_kategori = $conn->real_escape_string($kategori_filter);
-    $conditions[] = "kategori = '$safe_kategori'";
-}
-
-if ($conditions) {
-    $sql .= " WHERE " . implode(" AND ", $conditions);
-}
-
-$sql .= " ORDER BY id " . ($sort === 'desc' ? 'DESC' : 'asc');
-
+// Query hanya produk kategori lightning
+$sql = "SELECT * FROM barang WHERE kategori = '$safe_kategori' ORDER BY id $sort";
 $result = $conn->query($sql);
 $total_produk = $result->num_rows;
 ?>
-
 
 <link rel="stylesheet" href="module/css2/allproduct.css">
 
 <main>
     <div>
-        <form method="GET" >
-            <label>Filter: </label>
-            <select name="kategori" onchange="this.form.submit()">
-                <option value="">Semua Kategori</option>
-                <?php foreach ($kategori_list as $kategori): ?>
-                    <option value="<?= htmlspecialchars($kategori) ?>" <?= $kategori === $kategori_filter ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($kategori) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-
+        <form method="GET">
             <label>Urutkan:</label>
             <select name="sort" onchange="this.form.submit()">
-                <option value="desc" <?= $sort === 'desc' ? 'selected' : '' ?>>Terbaru</option>
-                <option value="asc" <?= $sort === 'asc' ? 'selected' : '' ?>>Terlama</option>
+                <option value="desc" <?= $sort === 'DESC' ? 'selected' : '' ?>>Terbaru</option>
+                <option value="asc" <?= $sort === 'ASC' ? 'selected' : '' ?>>Terlama</option>
             </select>
         </form>
 
-        <span ><?= $total_produk ?> produk</span>
+        <span><?= $total_produk ?> produk ditemukan</span>
     </div>
 
-    <!-- Produk -->
+    <!-- Daftar Produk -->
     <section>
         <?php while ($row = $result->fetch_assoc()): ?>
             <div>
